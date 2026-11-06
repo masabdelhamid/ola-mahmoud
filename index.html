@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F5F0EA">
+<title>Ola &amp; Mahmoud · علا ومحمود</title>
+<meta property="og:title" content="Ola &amp; Mahmoud · علا ومحمود">
+<meta property="og:description" content="Saturday 26 December 2026 · السبت ٢٦ ديسمبر ٢٠٢٦">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%92%8D%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Italianno&family=Marcellus&family=Noto+Naskh+Arabic:wght@400;500&family=Noto+Nastaliq+Urdu&display=swap">
+<style>
+:root {
+  --ground: #F5F0EA;
+  --paper: #FBF8F4;
+  --ink: #2E2622;
+  --muted: #6F625A;
+  --accent: #C98A72;
+  --accent-deep: #A9694F;
+  --line: #E4D8CD;
+  --serif: Marcellus, Georgia, serif;
+  --script: Italianno, "Brush Script MT", cursive;
+  --naskh: "Noto Naskh Arabic", "Geeza Pro", "Times New Roman", serif;
+  --nastaliq: "Noto Nastaliq Urdu", "Noto Naskh Arabic", serif;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+*, *::before, *::after { box-sizing: inherit; }
+html { background: var(--ground); -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--ground); color: var(--ink); font-family: var(--serif); }
+[dir="rtl"] body, body[dir="rtl"] { font-family: var(--naskh); }
+button, input, textarea { font: inherit; color: inherit; }
+
+.wrap { max-width: 460px; margin: 0 auto; padding: 20px 24px 40px; }
+.topbar { display: flex; justify-content: flex-end; }
+.lang-btn {
+  border: 1px solid var(--line); background: transparent; border-radius: 999px;
+  padding: 6px 14px; font-size: 15px; cursor: pointer; color: var(--muted);
+}
+.lang-btn:hover { color: var(--ink); border-color: var(--accent); }
+
+/* The invitation itself mirrors the card */
+.card { text-align: center; padding: 28px 0 8px; }
+.intro .card { animation: rise 1.2s ease both; }
+.intro .section { animation: rise 1.2s .25s ease both; }
+@keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .intro .card, .intro .section { animation: none !important; } }
+
+.greet { font-size: 17px; color: var(--muted); margin: 0 0 22px; min-height: 1.4em; }
+.small-caps { text-transform: uppercase; letter-spacing: 0.22em; font-size: 12.5px; line-height: 1.9; margin: 0; }
+.names-en { font-family: var(--script); font-weight: 400; font-size: clamp(58px, 17vw, 76px); line-height: 1.05; margin: 18px 0 14px; }
+.amp { color: var(--accent); }
+.names-ar { font-family: var(--nastaliq); font-weight: 400; font-size: clamp(42px, 12vw, 52px); line-height: 1.7; margin: 8px 0 6px; }
+.names-ar span { display: inline-block; }
+.date { letter-spacing: 0.15em; text-transform: uppercase; font-size: 17px; margin: 0; }
+.date sup { font-size: 0.55em; letter-spacing: 0.08em; }
+.times { display: grid; grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr); gap: 16px; margin: 20px auto 0; max-width: 360px; }
+.times p { margin: 0; padding: 11px 0; border-top: 1px solid var(--accent); border-bottom: 1px solid var(--accent); font-size: 12.5px; letter-spacing: 0.16em; text-transform: uppercase; }
+.times i { background: var(--accent); }
+.addr { font-size: 12.5px; letter-spacing: 0.13em; text-transform: uppercase; line-height: 1.9; margin: 22px 0 0; }
+
+[dir="rtl"] .small-caps, [dir="rtl"] .date, [dir="rtl"] .times p, [dir="rtl"] .addr { letter-spacing: 0; text-transform: none; }
+[dir="rtl"] .small-caps { font-size: 17px; line-height: 1.8; }
+[dir="rtl"] .date { font-size: 21px; }
+[dir="rtl"] .times p { font-size: 17px; }
+[dir="rtl"] .addr { font-size: 16px; line-height: 1.85; }
+[dir="rtl"] .greet { font-size: 19px; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 48px; padding: 12px 22px; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--accent); background: transparent; color: var(--ink);
+  text-decoration: none; font-size: 15px; letter-spacing: 0.04em;
+  transition: background .2s, color .2s, border-color .2s;
+}
+.btn:hover { border-color: var(--accent-deep); }
+.btn.solid { background: var(--accent); color: #fff; }
+.btn.solid:hover { background: var(--accent-deep); }
+.btn[disabled] { opacity: .55; cursor: default; }
+.directions { margin-top: 24px; }
+
+.section { margin-top: 34px; padding-top: 30px; border-top: 1px solid var(--line); text-align: center; }
+.label { font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin: 0 0 14px; }
+[dir="rtl"] .label { letter-spacing: 0; text-transform: none; font-size: 16px; }
+
+.count { display: flex; justify-content: center; gap: 26px; }
+.count div { min-width: 56px; }
+.count b { display: block; font-weight: 400; font-size: 34px; line-height: 1.1; }
+.count span { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+[dir="rtl"] .count b { font-size: 32px; }
+[dir="rtl"] .count span { letter-spacing: 0; text-transform: none; font-size: 15px; }
+
+h2 { font-family: var(--script); font-weight: 400; font-size: 46px; line-height: 1.1; margin: 0 0 6px; }
+[dir="rtl"] h2 { font-family: var(--naskh); font-size: 28px; font-weight: 500; margin-bottom: 10px; }
+.sub { color: var(--muted); font-size: 15px; line-height: 1.6; margin: 0 0 22px; }
+[dir="rtl"] .sub { font-size: 17px; }
+
+.choice { display: grid; gap: 12px; }
+.choice .btn { width: 100%; }
+.choice .btn[aria-pressed="true"] { background: var(--accent); color: #fff; }
+
+.fields { text-align: start; margin-top: 24px; display: grid; gap: 14px; }
+.fields label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 4px; letter-spacing: 0.04em; }
+[dir="rtl"] .fields label { font-size: 16px; }
+.fields input, .fields textarea {
+  width: 100%; border: 0; border-bottom: 1px solid var(--line); background: transparent;
+  padding: 10px 2px; font-size: 17px; border-radius: 0; outline: none;
+}
+.fields textarea { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; min-height: 90px; resize: vertical; }
+.fields input:focus, .fields textarea:focus { border-color: var(--accent); }
+.name-row { display: flex; gap: 10px; align-items: flex-end; }
+.name-row > div { flex: 1; }
+.icon-btn { border: 0; background: none; color: var(--muted); font-size: 22px; line-height: 1; padding: 8px; cursor: pointer; }
+.link-btn { border: 0; background: none; color: var(--accent-deep); padding: 4px 0; cursor: pointer; font-size: 15px; justify-self: start; text-decoration: underline; text-underline-offset: 3px; }
+.actions { margin-top: 26px; }
+.actions .btn { width: 100%; }
+.err { color: #A0412D; font-size: 15px; margin: 14px 0 0; min-height: 1.2em; }
+
+.summary { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; text-align: start; margin: 0 0 18px; line-height: 1.7; }
+.summary ul { margin: 6px 0 0; padding-inline-start: 20px; }
+.notice { color: var(--muted); font-size: 15px; line-height: 1.7; }
+[dir="rtl"] .notice { font-size: 17px; }
+
+footer { margin-top: 44px; text-align: center; color: var(--muted); font-size: 13px; line-height: 2; }
+footer .sig { font-family: var(--script); font-size: 34px; color: var(--ink); }
+[dir="rtl"] footer .sig { font-family: var(--nastaliq); font-size: 26px; line-height: 2.2; }
+footer a { color: var(--muted); }
+footer a:hover { color: var(--ink); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar"><button class="lang-btn" id="langBtn" type="button"></button></div>
+  <main id="app" class="intro" aria-live="polite"></main>
+  <footer id="foot"></footer>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var API = 'https://script.google.com/macros/s/AKfycbwKCcW8AhupprZfyYse9eiMRmdZLZIYiB4aCLMaogIfnI8l9r2Aj7vPJVZYHNsMyToj/exec';
+  var MAPS = 'https://maps.google.com/?q=30.066586,31.452412';
+  var EVENT = new Date('2026-12-26T16:00:00+02:00');
+  var EVENT_END = new Date('2026-12-26T20:00:00+02:00');
+
+  var code = (new URLSearchParams(location.search).get('g') || '').trim().toLowerCase();
+
+  var arNum = function (n) { return Number(n).toLocaleString('ar-EG'); };
+  function arSeats(n) {
+    if (n === 1) return 'مكان واحد';
+    if (n === 2) return 'مكانين';
+    if (n <= 10) return arNum(n) + ' أماكن';
+    return arNum(n) + ' مكان';
+  }
+
+  var T = {
+    en: {
+      toggle: 'عربي',
+      greet: ['Dear ', ','],
+      withLove: 'With love',
+      invite: 'We invite you to celebrate<br>our engagement',
+      date: 'Saturday, December 26<sup>th</sup>, 2026',
+      time: 'Four o’clock', when: 'In the afternoon',
+      addr: 'Villa 16, El Shahied Islam Rafat St.<br>Fifth District, First Settlement, New Cairo',
+      directions: 'Get directions',
+      countLabel: 'Until we celebrate',
+      units: ['days', 'hours', 'minutes'],
+      num: function (n) { return String(n); },
+      rsvpTitle: 'Will you join us?',
+      rsvpSub: function (s) { return 'We’ve saved ' + (s === 1 ? 'a seat' : s + ' seats') + ' for you. Kindly reply by 12 December.'; },
+      yes: function (s) { return s === 1 ? 'Yes, I’ll be there' : 'Yes, we’ll be there'; },
+      no: function (s) { return s === 1 ? 'Sorry, I can’t make it' : 'Sorry, we can’t make it'; },
+      whoComing: 'Who’s coming?',
+      guestN: function (i) { return 'Guest ' + i; },
+      addPerson: '+ Add another person',
+      remove: 'Remove',
+      note: 'A note for Ola & Mahmoud (optional)',
+      send: 'Send reply', sending: 'Sending…',
+      needName: 'Please add at least one name.',
+      chooseFirst: 'Please choose an answer first.',
+      thanksYes: 'Thank you! We can’t wait to celebrate with you.',
+      thanksNo: 'Thank you for letting us know. You’ll be missed!',
+      yourReply: 'Your reply',
+      attending: function (n) { return 'Attending (' + n + ')'; },
+      notAttending: 'Not attending',
+      change: 'Change my reply',
+      closed: 'Replies closed on 12 December. If anything has changed, please contact Ola or Mahmoud directly.',
+      noCode: 'To reply, please use the personal link we sent you on WhatsApp.',
+      unknown: 'We couldn’t find this invitation link. Please check the link you received, or contact Ola or Mahmoud.',
+      offline: 'We couldn’t reach the RSVP service just now. Please check your connection and try again.',
+      retry: 'Try again',
+      loading: 'Loading your invitation…',
+      busy: 'Lots of replies at once! Please try again in a moment.',
+      calendar: 'Add to calendar', google: 'Google', apple: 'Apple / Outlook',
+      sig: 'Ola &amp; Mahmoud'
+    },
+    ar: {
+      toggle: 'English',
+      greet: ['حبايبنا ', '،'],
+      withLove: 'بكل الحب',
+      invite: 'ندعوكم لمشاركتنا فرحة خطوبتنا',
+      date: 'السبت ٢٦ ديسمبر ٢٠٢٦',
+      time: 'الساعة الرابعة', when: 'عصرًا',
+      addr: 'فيلا ١٦، شارع الشهيد إسلام رأفت<br>المجاورة الخامسة، التجمع الأول، خلف السنترال',
+      directions: 'افتح اللوكيشن',
+      countLabel: 'فاضل على الاحتفال',
+      units: ['يوم', 'ساعة', 'دقيقة'],
+      num: arNum,
+      rsvpTitle: 'هتشرفونا؟',
+      rsvpSub: function (s) { return 'حاجزين لكم ' + arSeats(s) + '. ياريت تردوا علينا قبل ١٢ ديسمبر.'; },
+      yes: function () { return 'أكيد، جايين'; },
+      no: function () { return 'للأسف مش هنقدر نيجي'; },
+      whoComing: 'مين جاي؟',
+      guestN: function (i) { return 'الضيف ' + arNum(i); },
+      addPerson: '+ ضيف كمان',
+      remove: 'شيل',
+      note: 'كلمة لعلا ومحمود (اختياري)',
+      send: 'ابعت الرد', sending: 'جاري الإرسال…',
+      needName: 'اكتبوا اسم واحد على الأقل.',
+      chooseFirst: 'اختاروا الرد الأول.',
+      thanksYes: 'شكرًا! مستنيينكم نحتفل سوا ❤️',
+      thanksNo: 'شكرًا إنكم عرفتونا، هتوحشونا!',
+      yourReply: 'ردكم',
+      attending: function (n) { return 'جايين (' + arNum(n) + ')'; },
+      notAttending: 'مش هتقدروا تيجوا',
+      change: 'تغيير الرد',
+      closed: 'ميعاد تأكيد الحضور خلص يوم ١٢ ديسمبر. لو في أي تغيير كلمونا على طول.',
+      noCode: 'علشان تردوا، استخدموا اللينك اللي بعتناه لكم على واتساب.',
+      unknown: 'مش لاقيين الدعوة دي. اتأكدوا من اللينك اللي وصلكم، أو كلمونا.',
+      offline: 'مش قادرين نوصل لصفحة الردود دلوقتي. اتأكدوا من النت وجربوا تاني.',
+      retry: 'جربوا تاني',
+      loading: 'بنجهز دعوتكم…',
+      busy: 'في ردود كتير في نفس الوقت! جربوا تاني بعد شوية.',
+      calendar: 'أضف للتقويم', google: 'جوجل', apple: 'آبل / أوتلوك',
+      sig: '<span>علا</span> <span>ومحمود</span>'
+    }
+  };
+
+  var state = {
+    lang: null, guest: null, loading: !!code, error: null,
+    mode: 'view',            // view | form | thanks
+    draft: null, sending: false, formError: ''
+  };
+
+  function storedLang() { try { return sessionStorage.getItem('lang'); } catch (e) { return null; } }
+  function storeLang(l) { try { sessionStorage.setItem('lang', l); } catch (e) {} }
+  var browserLang = (navigator.language || '').toLowerCase().indexOf('ar') === 0 ? 'ar' : 'en';
+  state.lang = storedLang() || browserLang;
+
+  function h(tag, attrs) {
+    var el = document.createElement(tag);
+    if (attrs) for (var k in attrs) {
+      if (attrs[k] == null) continue;
+      if (k === 'text') el.textContent = attrs[k];
+      else if (k === 'html') el.innerHTML = attrs[k];
+      else if (k.slice(0, 2) === 'on') el.addEventListener(k.slice(2), attrs[k]);
+      else el.setAttribute(k, attrs[k]);
+    }
+    for (var i = 2; i < arguments.length; i++) {
+      var c = arguments[i];
+      if (c == null || c === false) continue;
+      el.appendChild(typeof c === 'string' ? document.createTextNode(c) : c);
+    }
+    return el;
+  }
+
+  /* ---------------------------------------------------------------- invitation */
+
+  function invitation(t) {
+    var ar = state.lang === 'ar';
+    var greet = state.guest ? h('p', { class: 'greet' }, t.greet[0], h('bdi', { text: state.guest.household }), t.greet[1]) : h('p', { class: 'greet' });
+    var names = ar
+      ? h('h1', { class: 'names-ar' },
+          h('span', { style: 'transform: translateY(-0.26em)', text: 'علا' }), ' ',
+          h('span', { style: 'transform: translateY(-0.03em)', text: 'ومحمود' }))
+      : h('h1', { class: 'names-en', html: 'Ola <span class="amp">&amp;</span> Mahmoud' });
+    return h('section', { class: 'card' },
+      greet,
+      ar ? h('p', { class: 'small-caps', style: 'color: var(--muted)', text: t.withLove }) : h('p', { class: 'small-caps', text: t.withLove }),
+      h('p', { class: 'small-caps', style: 'margin-top: 6px', html: t.invite }),
+      names,
+      h('p', { class: 'date', html: t.date }),
+      h('div', { class: 'times' }, h('p', { text: t.time }), h('i'), h('p', { text: t.when })),
+      h('p', { class: 'addr', html: t.addr }),
+      h('a', { class: 'btn directions', href: MAPS, target: '_blank', rel: 'noopener' }, t.directions)
+    );
+  }
+
+  var countEl = null;
+  function countdown(t) {
+    if (Date.now() >= EVENT) return null;
+    countEl = h('div', { class: 'count' });
+    var sec = h('section', { class: 'section' }, h('p', { class: 'label', text: t.countLabel }), countEl);
+    tick();
+    return sec;
+  }
+  function tick() {
+    if (!countEl) return;
+    var t = T[state.lang];
+    var ms = Math.max(0, EVENT - Date.now());
+    var d = Math.floor(ms / 864e5), hr = Math.floor(ms % 864e5 / 36e5), mn = Math.floor(ms % 36e5 / 6e4);
+    countEl.textContent = '';
+    [d, hr, mn].forEach(function (v, i) {
+      countEl.appendChild(h('div', null, h('b', { text: t.num(v) }), h('span', { text: t.units[i] })));
+    });
+  }
+  setInterval(tick, 30000);
+
+  /* ---------------------------------------------------------------- RSVP */
+
+  function rsvp(t) {
+    var sec = h('section', { class: 'section', id: 'rsvp' });
+    var g = state.guest;
+
+    if (!code) { sec.appendChild(h('p', { class: 'notice', text: t.noCode })); return sec; }
+    if (state.loading) { sec.appendChild(h('p', { class: 'notice', text: t.loading })); return sec; }
+    if (state.error) {
+      sec.appendChild(h('p', { class: 'notice', text: state.error === 'unknown' ? t.unknown : t.offline }));
+      if (state.error !== 'unknown') sec.appendChild(h('button', { class: 'btn', type: 'button', style: 'margin-top: 16px', onclick: load }, t.retry));
+      return sec;
+    }
+
+    sec.appendChild(h('h2', { text: t.rsvpTitle }));
+
+    if (state.mode === 'form' && !g.closed) return form(sec, t, g);
+
+    if (state.mode === 'thanks') sec.appendChild(h('p', { class: 'sub', text: g.status === 'yes' ? t.thanksYes : t.thanksNo }));
+
+    if (g.status === 'pending' && !g.closed) { state.mode = 'form'; sec.textContent = ''; sec.appendChild(h('h2', { text: t.rsvpTitle })); return form(sec, t, g); }
+
+    if (g.status !== 'pending') {
+      var box = h('div', { class: 'summary' },
+        h('strong', { text: t.yourReply + ': ' + (g.status === 'yes' ? t.attending(g.names.length) : t.notAttending) }));
+      if (g.status === 'yes' && g.names.length) {
+        var ul = h('ul'); g.names.forEach(function (n) { ul.appendChild(h('li', null, h('bdi', { text: n }))); }); box.appendChild(ul);
+      }
+      if (g.message) box.appendChild(h('p', { dir: 'auto', style: 'margin: 10px 0 0; color: var(--muted)', text: g.message }));
+      sec.appendChild(box);
+    }
+    if (g.closed) sec.appendChild(h('p', { class: 'notice', text: t.closed }));
+    else sec.appendChild(h('button', { class: 'btn', type: 'button', onclick: function () { startForm(); } }, t.change));
+    return sec;
+  }
+
+  function startForm() {
+    var g = state.guest;
+    state.draft = {
+      attending: g.status === 'yes' ? true : g.status === 'no' ? false : null,
+      names: g.names.length ? g.names.slice(0, g.seats) : [''],
+      message: g.message || ''
+    };
+    state.mode = 'form'; state.formError = '';
+    render(); document.getElementById('rsvp').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function form(sec, t, g) {
+    if (!state.draft) {
+      state.draft = { attending: null, names: g.names.length ? g.names.slice(0, g.seats) : [''], message: g.message || '' };
+    }
+    var d = state.draft;
+    sec.appendChild(h('p', { class: 'sub', text: t.rsvpSub(g.seats) }));
+
+    var yes = h('button', { class: 'btn', type: 'button', 'aria-pressed': String(d.attending === true),
+      onclick: function () { d.attending = true; state.formError = ''; render(); } }, t.yes(g.seats));
+    var no = h('button', { class: 'btn', type: 'button', 'aria-pressed': String(d.attending === false),
+      onclick: function () { d.attending = false; state.formError = ''; render(); } }, t.no(g.seats));
+    sec.appendChild(h('div', { class: 'choice', role: 'group' }, yes, no));
+
+    var fields = h('div', { class: 'fields' });
+    if (d.attending === true) {
+      fields.appendChild(h('p', { class: 'label', style: 'margin: 0', text: t.whoComing }));
+      d.names.forEach(function (val, i) {
+        var id = 'n' + i;
+        var input = h('input', { id: id, type: 'text', dir: 'auto', autocomplete: i === 0 ? 'name' : 'off', maxlength: '80', value: val,
+          oninput: function (e) { d.names[i] = e.target.value; } });
+        var row = h('div', { class: 'name-row' }, h('div', null, h('label', { for: id, text: t.guestN(i + 1) }), input));
+        if (d.names.length > 1) row.appendChild(h('button', { class: 'icon-btn', type: 'button', 'aria-label': t.remove,
+          onclick: function () { d.names.splice(i, 1); render(); } }, '×'));
+        fields.appendChild(row);
+      });
+      if (d.names.length < g.seats) fields.appendChild(h('button', { class: 'link-btn', type: 'button',
+        onclick: function () { d.names.push(''); render(); var el = document.getElementById('n' + (d.names.length - 1)); if (el) el.focus(); } }, t.addPerson));
+    }
+    if (d.attending !== null) {
+      fields.appendChild(h('div', null,
+        h('label', { for: 'msg', text: t.note }),
+        h('textarea', { id: 'msg', dir: 'auto', maxlength: '1000', oninput: function (e) { d.message = e.target.value; } }, d.message)));
+    }
+    sec.appendChild(fields);
+
+    sec.appendChild(h('div', { class: 'actions' },
+      h('button', { class: 'btn solid', type: 'button', disabled: state.sending ? 'disabled' : null, onclick: submit },
+        state.sending ? t.sending : t.send)));
+    sec.appendChild(h('p', { class: 'err', role: 'alert', text: state.formError }));
+    return sec;
+  }
+
+  function submit() {
+    var t = T[state.lang], d = state.draft;
+    if (d.attending === null) { state.formError = t.chooseFirst; render(); return; }
+    var names = d.attending ? d.names.map(function (s) { return s.trim(); }).filter(Boolean) : [];
+    if (d.attending && !names.length) { state.formError = t.needName; render(); return; }
+    state.sending = true; state.formError = ''; render();
+    fetch(API, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({ g: code, attending: d.attending, names: names, message: d.message.trim() }) })
+      .then(function (r) { return r.json(); })
+      .then(function (res) {
+        state.sending = false;
+        if (res.ok) { state.guest = res; state.mode = 'thanks'; state.draft = null; }
+        else if (res.error === 'closed') { state.guest.closed = true; state.mode = 'view'; }
+        else if (res.error === 'busy') { state.formError = t.busy; }
+        else if (res.error === 'unknown_code') { state.error = 'unknown'; }
+        else { state.formError = t.offline; }
+        render();
+        var el = document.getElementById('rsvp'); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      })
+      .catch(function () { state.sending = false; state.formError = t.offline; render(); });
+  }
+
+  /* ---------------------------------------------------------------- calendar + footer */
+
+  function icsHref() {
+    function f(d) { return d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, ''); }
+    var ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Ola & Mahmoud//EN', 'BEGIN:VEVENT',
+      'UID:ola-mahmoud-engagement-20261226@invite', 'DTSTAMP:' + f(new Date()),
+      'DTSTART:' + f(EVENT), 'DTEND:' + f(EVENT_END),
+      'SUMMARY:Ola & Mahmoud’s engagement',
+      'LOCATION:Villa 16\\, El Shahied Islam Rafat St.\\, Fifth District\\, First Settlement\\, New Cairo',
+      'DESCRIPTION:' + MAPS, 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
+    return 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics);
+  }
+  function googleCal() {
+    function f(d) { return d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, ''); }
+    return 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
+      '&text=' + encodeURIComponent('Ola & Mahmoud’s engagement') +
+      '&dates=' + f(EVENT) + '/' + f(EVENT_END) +
+      '&location=' + encodeURIComponent('Villa 16, El Shahied Islam Rafat St., Fifth District, First Settlement, New Cairo') +
+      '&details=' + encodeURIComponent(MAPS);
+  }
+  function footer(t) {
+    var f = document.getElementById('foot'); f.textContent = '';
+    f.appendChild(h('div', { class: 'sig', html: t.sig }));
+    f.appendChild(h('div', null, t.calendar + ': ',
+      h('a', { href: googleCal(), target: '_blank', rel: 'noopener', text: t.google }), ' · ',
+      h('a', { href: icsHref(), download: 'ola-mahmoud-engagement.ics', text: t.apple })));
+  }
+
+  /* ---------------------------------------------------------------- render */
+
+  function render() {
+    var t = T[state.lang];
+    var root = document.documentElement;
+    root.lang = state.lang; root.dir = state.lang === 'ar' ? 'rtl' : 'ltr';
+    document.getElementById('langBtn').textContent = t.toggle;
+    document.getElementById('langBtn').setAttribute('lang', state.lang === 'ar' ? 'en' : 'ar');
+    var app = document.getElementById('app'); app.textContent = '';
+    countEl = null;
+    app.appendChild(invitation(t));
+    var c = countdown(t); if (c) app.appendChild(c);
+    app.appendChild(rsvp(t));
+    footer(t);
+  }
+
+  document.getElementById('langBtn').addEventListener('click', function () {
+    state.lang = state.lang === 'ar' ? 'en' : 'ar'; storeLang(state.lang); render();
+  });
+
+  function load() {
+    state.loading = true; state.error = null; render();
+    var ctl = window.AbortController ? new AbortController() : null;
+    var timer = setTimeout(function () { if (ctl) ctl.abort(); }, 15000);
+    fetch(API + '?g=' + encodeURIComponent(code), ctl ? { signal: ctl.signal } : {})
+      .then(function (r) { return r.json(); })
+      .then(function (res) {
+        clearTimeout(timer); state.loading = false;
+        if (!res.ok) { state.error = res.error === 'unknown_code' ? 'unknown' : 'offline'; }
+        else {
+          state.guest = res;
+          if (!storedLang()) state.lang = res.lang;
+          state.mode = 'view';
+        }
+        render();
+      })
+      .catch(function () { clearTimeout(timer); state.loading = false; state.error = 'offline'; render(); });
+  }
+
+  render();
+  setTimeout(function () { document.getElementById('app').classList.remove('intro'); }, 1600);
+  if (code) load();
+})();
+</script>
+</body>
+</html>
