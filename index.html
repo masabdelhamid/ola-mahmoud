@@ -344,7 +344,7 @@ html { scrollbar-gutter: stable; }
       busy: 'Lots of replies at once! Please try again in a moment.',
       calendar: 'Add to calendar', google: 'Google', apple: 'Apple / Outlook',
       tap: 'Tap to open', open: 'Open your invitation', forWhom: 'For ',
-      sig: 'Ola <span class="amp">&amp;</span> Mahmoud'
+      sig: '<span class="o">Ola</span> <span class="amp uvkey">&amp;<span class="tw" aria-hidden="true"></span></span> <span class="m">Mahmoud</span>'
     },
     ar: {
       toggle: 'English',
@@ -398,7 +398,7 @@ html { scrollbar-gutter: stable; }
       busy: 'في ردود كتير في نفس الوقت! جربوا تاني بعد شوية.',
       calendar: 'أضف للتقويم', google: 'جوجل', apple: 'آبل / أوتلوك',
       tap: 'اضغط لفتح الدعوة', open: 'افتح دعوتك', forWhom: 'إلى ',
-      sig: '<span>علا</span> <span><span class="amp">و</span>محمود</span>'
+      sig: '<span class="o">علا</span> <span><span class="amp uvkey">و<span class="tw" aria-hidden="true"></span></span><span class="m">محمود</span></span>'
     }
   };
 
@@ -459,7 +459,7 @@ html { scrollbar-gutter: stable; }
   function morphTo(pane, instant) {
     var box = $('morph');
     Array.prototype.forEach.call(box.querySelectorAll('.pane.out'), function (p) { p.remove(); });
-    var old = box.firstElementChild;
+    var old = box.firstElementChild, gen = box._gen = (box._gen || 0) + 1;
     pane.classList.add('pane');
     if (!old || instant || REDUCED) { clearTimeout(box._t); box.textContent = ''; box.appendChild(pane); box.style.height = ''; return; }
     var h0 = box.offsetHeight;
@@ -469,11 +469,12 @@ html { scrollbar-gutter: stable; }
     box.appendChild(pane);
     var h1 = pane.offsetHeight;
     nextFrame(function () {
+      if (box._gen !== gen) return;               // a newer redraw has taken over
       box.style.height = h1 + 'px';
       pane.classList.remove('in');
     });
     clearTimeout(box._t);
-    box._t = setTimeout(function () { Array.prototype.forEach.call(box.querySelectorAll('.pane.out'), function (p) { p.remove(); }); box.style.height = ''; }, 560);
+    box._t = setTimeout(function () { if (box._gen !== gen) return; Array.prototype.forEach.call(box.querySelectorAll('.pane.out'), function (p) { p.remove(); }); box.style.height = ''; }, 560);
   }
 
   /* ------------------------------------------------------------ static parts */
@@ -924,5 +925,6 @@ html { scrollbar-gutter: stable; }
   }
 })();
 </script>
+<script src="uv.js" defer></script>
 </body>
 </html>
