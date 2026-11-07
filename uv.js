@@ -120,9 +120,9 @@ frame(0);
 
 const root=document.documentElement;
 // quiet signals to the Sheet: saw the glint, found the lamp (held 1 s), watched it through (reached the countdown)
-const API='https://script.google.com/macros/s/AKfycbwKCcW8AhupprZfyYse9eiMRmdZLZIYiB4aCLMaogIfnI8l9r2Aj7vPJVZYHNsMyToj/exec';
-const CODE=new URLSearchParams(location.search).get('g');
-function ping(ev){ if(!CODE) return; try{ fetch(API+'?g='+encodeURIComponent(CODE)+'&ev='+ev,{mode:'no-cors',keepalive:true,cache:'no-store'}) }catch(err){} }
+const API='https://script.google.com/macros/s/AKfycbzT5ClBgwMXVUX7mi5MEDA9InSI4oz0b0EuMKy_RJYh36i39F_Vgyab3UJDwAMDjgJu/exec';
+const codeNow=()=>window.__olmCode||new URLSearchParams(location.search).get('g')||'';
+function ping(ev){ const CODE=codeNow(); if(!CODE) return; try{ fetch(API+'?g='+encodeURIComponent(CODE)+'&ev='+ev,{mode:'no-cors',keepalive:true,cache:'no-store'}) }catch(err){} }
 let sawSent=false, fullSent=false, lampSent=false;
 function track(t){ if(!root.classList.contains('uv')) return; if(t>1&&!lampSent){ lampSent=true; ping('lamp') } if(t>5.4&&!fullSent){ fullSent=true; ping('full') } }
 function keyEl(){ return document.querySelector('#foot .uvkey') }

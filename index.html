@@ -180,6 +180,10 @@ h2 { font-family: var(--script); font-weight: 400; font-size: 48px; line-height:
 .add:hover { text-decoration: underline; text-underline-offset: 4px; }
 .notefield { margin-top: 22px; }
 .label.kids-head { margin-top: 28px; }
+.field.yourname { margin: 4px 0 22px; text-align: start; }
+.keeplink { margin: 14px auto 0; max-width: 340px; font-size: 13.5px; line-height: 1.7; color: var(--muted); text-align: center; word-break: break-all; }
+.keeplink a { color: var(--accent-deep); }
+[dir="rtl"] .keeplink { font-size: 15.5px; }
 .summary .kids-sum { margin-top: 10px; color: var(--muted); font-size: 13px; letter-spacing: .14em; text-transform: uppercase; }
 [dir="rtl"] .summary .kids-sum { letter-spacing: 0; text-transform: none; font-size: 15px; }
 .who { margin: 0 0 2px; }
@@ -284,13 +288,18 @@ html { scrollbar-gutter: stable; }
 (function () {
   'use strict';
 
-  var API = 'https://script.google.com/macros/s/AKfycbwKCcW8AhupprZfyYse9eiMRmdZLZIYiB4aCLMaogIfnI8l9r2Aj7vPJVZYHNsMyToj/exec';
+  var API = 'https://script.google.com/macros/s/AKfycbzT5ClBgwMXVUX7mi5MEDA9InSI4oz0b0EuMKy_RJYh36i39F_Vgyab3UJDwAMDjgJu/exec';
   var MAPS = 'https://maps.google.com/?q=30.066586,31.452412';
   var EVENT = new Date('2026-12-26T16:00:00+02:00');
   var EVENT_END = new Date('2026-12-26T21:00:00+02:00');
   var REDUCED = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
 
   var code = (new URLSearchParams(location.search).get('g') || '').trim().toLowerCase();
+  // shared links (?l=…): once someone has replied, their phone remembers their own personal code
+  var linkCode = (new URLSearchParams(location.search).get('l') || '').trim().toLowerCase();
+  var LINK_KEY = 'olm-link-' + linkCode, codeFromLink = false;
+  if (!code && linkCode) { try { code = (localStorage.getItem(LINK_KEY) || '').trim().toLowerCase(); codeFromLink = !!code; } catch (e) {} }
+  window.__olmCode = code;
 
   var arNum = function (n) { return Number(n).toLocaleString('ar-EG'); };
   function arSeats(n) {
@@ -322,6 +331,9 @@ html { scrollbar-gutter: stable; }
       addPerson: '+ Add another person',
       remove: 'Remove',
       yourName: 'Your name', yourGuest: 'Your guest', addGuest: '+ Add a guest',
+      linkSub: 'Kindly let us know whether you can join us, and who’s coming.',
+      othersComing: 'Anyone coming with you?', guestOther: function (i) { return 'Guest ' + i; },
+      keepLink: 'To change your reply later, use your personal link:',
       kidsLabel: 'Children', kidsOptional: 'Children (optional)', childN: function (i) { return 'Child ' + i; }, addChild: '+ Add a child',
       kidsCount: function (k) { return k === 1 ? '1 child' : k + ' children'; },
       note: 'A note for Ola & Mahmoud (optional)',
@@ -371,6 +383,9 @@ html { scrollbar-gutter: stable; }
       addPerson: '+ ضيف كمان',
       remove: 'شيل',
       yourName: { f: 'الاسم', he: 'اسمك', she: 'اسمك' }, yourGuest: { f: 'الضيف', he: 'ضيفك', she: 'ضيفك' },
+      linkSub: 'ياريت تعرفونا هتقدروا تيجوا، ومين جاي.',
+      othersComing: 'حد تاني جاي؟', guestOther: function (i) { return 'الضيف ' + arNum(i); },
+      keepLink: 'علشان تغيّروا ردكم بعدين، استخدموا اللينك ده:',
       addGuest: { f: '+ ضيف كمان', he: '+ ضيف معاك', she: '+ ضيف معاكي' },
       kidsLabel: 'الأطفال', kidsOptional: 'الأطفال (اختياري)', childN: function (i) { return 'طفل ' + arNum(i); }, addChild: '+ إضافة طفل',
       kidsCount: function (k) { return k === 1 ? 'طفل واحد' : k === 2 ? 'طفلين' : k <= 10 ? arNum(k) + ' أطفال' : arNum(k) + ' طفل'; },
@@ -482,6 +497,7 @@ html { scrollbar-gutter: stable; }
   function renderGreeting() {
     var t = L(), g = $('greet');
     g.textContent = '';
+    if (state.guest && state.guest.mode === 'link') { g.appendChild(h('bdi', { text: state.guest.greeting[state.lang] || '' })); return; }
     if (state.guest) { g.appendChild(document.createTextNode(t.greet[0])); g.appendChild(h('bdi', { text: state.guest.household })); g.appendChild(document.createTextNode(t.greet[1])); }
   }
 
@@ -565,7 +581,7 @@ html { scrollbar-gutter: stable; }
 
   function rsvpPane() {
     var t = L(), g = state.guest, p = h('div');
-    if (!code) { p.appendChild(h('p', { class: 'notice', text: t.noCode })); return p; }
+    if (!code && !linkCode) { p.appendChild(h('p', { class: 'notice', text: t.noCode })); return p; }
     if (state.view === 'loading') {
       p.appendChild(h('span', { class: 'sk', style: 'width: 46%; height: 26px; margin-bottom: 18px' }));
       p.appendChild(h('span', { class: 'sk', style: 'width: 72%' }));
@@ -584,6 +600,8 @@ html { scrollbar-gutter: stable; }
       p.appendChild(h('div', { html: '<svg class="tick" viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="26"/><path d="M18 29l7 7 13-15"/></svg>' }));
       p.appendChild(h('h2', { text: g.status === 'yes' ? t.thanksYesTitle : t.thanksNoTitle }));
       p.appendChild(h('p', { class: 'sub', text: g.status === 'yes' ? t.thanksYes : t.thanksNo }));
+      if (state.justLinked) p.appendChild(h('p', { class: 'keeplink' }, h('span', { text: t.keepLink }), h('br'),
+        h('a', { href: state.justLinked, dir: 'ltr', text: state.justLinked.replace(/^https?:\/\//, '') })));
     } else {
       p.appendChild(h('h2', { text: t.rsvpTitle }));
     }
@@ -618,16 +636,23 @@ html { scrollbar-gutter: stable; }
   }
 
   function formPane(p, t, g) {
-    if (!state.draft) state.draft = { attending: null, names: startNames(g), kids: [], message: '' };
+    var asLink = g.mode === 'link', open = asLink || !!g.via;
+    if (!state.draft) state.draft = { attending: null, your: '', names: asLink ? [] : startNames(g), kids: [], message: '' };
     var d = state.draft;
     p.appendChild(h('h2', { text: t.rsvpTitle }));
-    p.appendChild(h('p', { class: 'sub', text: t.rsvpSub(g.seats) }));
+    p.appendChild(h('p', { class: 'sub', text: open ? t.linkSub : t.rsvpSub(g.seats) }));
+    if (asLink) {
+      var yourIn = h('input', { type: 'text', id: 'yn', dir: 'auto', maxlength: '80', autocomplete: 'name' });
+      yourIn.value = d.your || '';
+      yourIn.addEventListener('input', function () { d.your = yourIn.value; });
+      p.appendChild(h('div', { class: 'field yourname' }, h('label', { for: 'yn', text: L().yourName }), yourIn, h('span', { class: 'ul' })));
+    }
 
     function opt(val, label) {
       return h('button', { class: 'opt', type: 'button', 'aria-pressed': String(d.attending === val),
         onclick: function () { choose(val); } }, h('span', { class: 'dot' }), h('span', { text: label }));
     }
-    var plural = prefilled(g).length > 1, raw = T[state.lang];
+    var plural = open || prefilled(g).length > 1, raw = T[state.lang];
     var yesLabel = plural ? raw.yes.f(g.seats) : t.yes(g.seats), noLabel = plural ? raw.no.f(g.seats) : t.no(g.seats);
     var yes = opt(true, yesLabel), no = opt(false, noLabel);
     p.appendChild(h('div', { class: 'choice', role: 'group' }, yes, no));
@@ -667,13 +692,16 @@ html { scrollbar-gutter: stable; }
       o.items.forEach(function (v) { addRow(v, false); });
       return { rows: rows, add: add, values: function () { return Array.prototype.map.call(rows.querySelectorAll('input'), function (i) { return i.value; }); } };
     }
-    var adults = makeList({ id: 'n', items: d.names.length ? d.names : [''], min: 1, max: g.seats,
-      label: function (i) { return single ? (i === 0 ? t.yourName : t.yourGuest) : t.guestN(i + 1); },
-      addText: single ? t.addGuest : t.addPerson });
+    var adults = asLink
+      ? makeList({ id: 'n', items: d.names, min: 0, max: g.seats - 1, label: function (i) { return t.guestOther(i + 2); }, addText: t.addPerson })
+      : makeList({ id: 'n', items: d.names.length ? d.names : [''], min: 1, max: g.seats,
+          label: function (i) { return single ? (i === 0 ? t.yourName : t.yourGuest) : t.guestN(i + 1); },
+          addText: single ? t.addGuest : t.addPerson });
     var kids = g.kidsAllowed ? makeList({ id: 'k', items: d.kids || [], min: 0, max: 10,
       label: function (i) { return t.childN(i + 1); }, addText: t.addChild }) : null;
     var inner = h('div', { class: 'inner' });
-    if (!single && !couple) inner.appendChild(h('p', { class: 'label who', style: 'text-align: start', text: t.whoComing }));
+    if (asLink) inner.appendChild(h('p', { class: 'label who', style: 'text-align: start', text: t.othersComing }));
+    else if (!single && !couple) inner.appendChild(h('p', { class: 'label who', style: 'text-align: start', text: t.whoComing }));
     inner.appendChild(adults.rows); inner.appendChild(adults.add);
     if (kids) {
       inner.appendChild(h('p', { class: 'label who kids-head', style: 'text-align: start', text: t.kidsOptional }));
@@ -717,7 +745,7 @@ html { scrollbar-gutter: stable; }
       setCollapse(namesWrap, val === true);
       setCollapse(noteWrap, true);
       showErr('');
-      if (val === true && !single) setTimeout(function () { var first = rows.querySelector('input'); if (first && !first.value) first.focus({ preventScroll: true }); }, 450);
+      if (val === true && !single && !asLink) setTimeout(function () { var first = rows.querySelector('input'); if (first && !first.value) first.focus({ preventScroll: true }); }, 450);
     }
     send.addEventListener('click', function () {
       if (state.sending) return;
@@ -725,16 +753,26 @@ html { scrollbar-gutter: stable; }
       if (d.attending === null) return showErr(t.chooseFirst);
       var kidNames = d.attending ? d.kids.map(function (s) { return s.trim(); }).filter(Boolean) : [];
       var names = d.attending ? d.names.map(function (s) { return s.trim(); }).filter(Boolean) : [];
+      var your = (d.your || '').trim();
+      if (asLink) { if (!your) return showErr(t.needName); names = d.attending ? [your].concat(names) : [your]; }
       if (d.attending && !names.length) return showErr(t.needName);
       showErr('');
       state.sending = true;
       send.disabled = true; send.textContent = ''; send.appendChild(h('span', { class: 'dots', 'aria-label': t.sending }, h('i'), h('i'), h('i')));
       fetch(API, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify({ g: code, attending: d.attending, names: names, kids: kidNames, message: (d.message || '').trim() }) })
+        body: JSON.stringify(asLink
+          ? { l: linkCode, lang: state.lang, attending: d.attending, names: names, kids: kidNames, message: (d.message || '').trim() }
+          : { g: code, attending: d.attending, names: names, kids: kidNames, message: (d.message || '').trim() }) })
         .then(function (r) { return r.json(); })
         .then(function (res) {
           state.sending = false;
-          if (res.ok) { state.guest = res; state.draft = null; state.view = 'thanks'; morphTo(rsvpPane()); return; }
+          if (res.ok) {
+            if (asLink && res.code) {
+              code = res.code; window.__olmCode = code; state.justLinked = res.personalLink || '';
+              try { localStorage.setItem(LINK_KEY, code); } catch (e) {}
+            }
+            state.guest = res; state.draft = null; state.view = 'thanks'; morphTo(rsvpPane()); return;
+          }
           if (res.error === 'closed') { state.guest.closed = true; state.view = 'summary'; morphTo(rsvpPane()); return; }
           if (res.error === 'unknown_code') { state.view = 'error'; state.error = 'unknown'; morphTo(rsvpPane()); return; }
           resetSend(); showErr(res.error === 'busy' ? t.busy : t.offline);
@@ -806,8 +844,9 @@ html { scrollbar-gutter: stable; }
     env.overlay.setAttribute('dir', ar ? 'rtl' : 'ltr');
     env.hint.textContent = t.tap;
     env.btn.setAttribute('aria-label', t.open);
-    env.to.firstChild.textContent = state.guest ? t.forWhom.trim() : '';
-    env.to.lastChild.textContent = state.guest ? state.guest.household : '';
+    var asLink = state.guest && state.guest.mode === 'link';
+    env.to.firstChild.textContent = state.guest && !asLink ? t.forWhom.trim() : '';
+    env.to.lastChild.textContent = !state.guest ? '' : asLink ? (state.guest.greeting[state.lang] || '') : state.guest.household;
     var ln = env.letter.querySelector('.ln');
     ln.className = 'ln' + (ar ? ' ar' : '');
     ln.innerHTML = ar ? '<span style="display: inline-block; transform: translateY(-0.26em)">علا</span> <span style="display: inline-block; transform: translateY(-0.03em)"><span style="color: var(--accent)">و</span>محمود</span>'
@@ -895,14 +934,18 @@ html { scrollbar-gutter: stable; }
     morphTo(rsvpPane());
     var ctl = window.AbortController ? new AbortController() : null;
     var timer = setTimeout(function () { if (ctl) ctl.abort(); }, 15000);
-    fetch(API + '?g=' + encodeURIComponent(code), ctl ? { signal: ctl.signal } : {})
+    fetch(API + (code ? '?g=' + encodeURIComponent(code) : '?l=' + encodeURIComponent(linkCode)), ctl ? { signal: ctl.signal } : {})
       .then(function (r) { return r.json(); })
       .then(function (res) {
         clearTimeout(timer);
+        if (!res.ok && res.error === 'unknown_code' && codeFromLink) {       // a remembered reply that no longer exists
+          try { localStorage.removeItem(LINK_KEY); } catch (e) {}
+          code = ''; codeFromLink = false; window.__olmCode = ''; return load().then(resolveLoad);
+        }
         if (!res.ok) { state.view = 'error'; state.error = res.error === 'unknown_code' ? 'unknown' : 'offline'; morphTo(rsvpPane()); return resolveLoad(); }
-        var langChanged = !storedLang() && res.lang !== state.lang;
+        var langChanged = !storedLang() && !!res.lang && res.lang !== state.lang;
         state.guest = res;
-        if (!storedLang()) state.lang = res.lang;
+        if (!storedLang() && res.lang) state.lang = res.lang;
         state.view = res.status === 'pending' && !res.closed ? 'form' : 'summary';
         if (langChanged) { renderAll(); } else { renderGreeting(); renderCard(); morphTo(rsvpPane()); }
         updateEnvelope();
@@ -918,7 +961,7 @@ html { scrollbar-gutter: stable; }
   var useEnvelope = !envelopeSeen() && !REDUCED && !!Element.prototype.animate;
   if (useEnvelope) buildEnvelope();
   else { $('main').classList.add('enter'); setTimeout(function () { $('main').classList.remove('enter'); }, 3000); }
-  var loaded = code ? load() : Promise.resolve();
+  var loaded = code || linkCode ? load() : Promise.resolve();
   if (useEnvelope) {
     var fontsReady = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
     Promise.race([Promise.all([loaded, fontsReady]), wait(3500)]).then(function () { requestAnimationFrame(showEnvelope); });
