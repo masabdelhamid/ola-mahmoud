@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F3EDE6">
+<title>Share your photos · Ola &amp; Mahmoud</title>
+<meta property="og:type" content="website">
+<meta property="og:title" content="Share your photos with Ola &amp; Mahmoud · شاركونا صوركم">
+<meta property="og:description" content="Tap to add your photos and videos from our engagement">
+<meta property="og:image" content="https://masabdelhamid.github.io/ola-mahmoud/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%B8%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Italianno&family=Marcellus&family=Noto+Naskh+Arabic:wght@400;500&family=Noto+Nastaliq+Urdu&display=swap">
+<style>
+:root {
+  --ground: #F3EDE6;
+  --paper: #FBF8F3;
+  --ink: #2E2622;
+  --muted: #7A6B61;
+  --faint: #A89A8F;
+  --accent: #C98A72;
+  --accent-deep: #B4735C;
+  --tint: rgba(201,138,114,.09);
+  --line: #E4D9CE;
+  --serif: Marcellus, Georgia, serif;
+  --script: Italianno, "Brush Script MT", cursive;
+  --naskh: "Noto Naskh Arabic", "Geeza Pro", "Times New Roman", serif;
+  --nastaliq: "Noto Nastaliq Urdu", "Noto Naskh Arabic", serif;
+  --ease: cubic-bezier(.22,.61,.36,1);
+  --ease-out: cubic-bezier(.16,1,.3,1);
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .36 0 0 0 0 .26 0 0 0 0 .19 0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.075'/%3E%3C/svg%3E");
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+*, *::before, *::after { box-sizing: inherit; }
+html { background: var(--ground); -webkit-text-size-adjust: 100%; -webkit-tap-highlight-color: transparent; }
+body { margin: 0; background: var(--ground) var(--grain); color: var(--ink); font-family: var(--serif); -webkit-font-smoothing: antialiased; }
+[dir="rtl"] body { font-family: var(--naskh); }
+button, input { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.wrap { max-width: 480px; margin: 0 auto; padding: 16px 18px 56px; }
+.topbar { display: flex; justify-content: flex-end; height: 36px; align-items: center; }
+.lang { display: inline-flex; gap: 2px; padding: 3px; border-radius: 999px; background: rgba(255,255,255,.45); border: 1px solid var(--line); direction: ltr; }
+.lang button { border: 0; background: transparent; border-radius: 999px; padding: 5px 12px; font-size: 13px; color: var(--muted); cursor: pointer; transition: background .3s var(--ease), color .3s var(--ease); }
+.lang button[lang="ar"] { font-family: var(--naskh); font-size: 15px; padding: 2px 12px 4px; }
+.lang button[aria-pressed="true"] { background: var(--paper); color: var(--ink); box-shadow: 0 1px 3px rgba(90,55,35,.12); }
+#main { transition: opacity .28s var(--ease); }
+#main.swapping { opacity: 0; }
+.card { position: relative; text-align: center; padding: 44px 26px 38px; margin-top: 18px; background: var(--paper) var(--grain); border-radius: 3px;
+  box-shadow: 0 0 0 1px rgba(160,120,95,.12), 0 1px 1px rgba(90,55,35,.04), 0 10px 24px -14px rgba(90,55,35,.28), 0 30px 60px -40px rgba(90,55,35,.35);
+  animation: rise .9s var(--ease-out) both; }
+.card::before { content: ""; position: absolute; inset: 10px; border: 1px solid rgba(201,138,114,.34); border-radius: 2px; pointer-events: none; }
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.names-en { font-family: var(--script); font-weight: 400; font-size: 50px; line-height: 1.05; margin: 0; }
+.names-ar { font-family: var(--nastaliq); font-weight: 400; font-size: 34px; line-height: 1.7; margin: 0; }
+.names-ar span { display: inline-block; }
+.amp { color: var(--accent); }
+.caps { text-transform: uppercase; letter-spacing: .14em; font-size: 11.5px; white-space: nowrap; line-height: 1.9; margin: 14px 0 0; color: var(--muted); }
+[dir="rtl"] .caps { letter-spacing: 0; text-transform: none; font-size: 17px; white-space: normal; }
+h2 { font-family: var(--script); font-weight: 400; font-size: 46px; line-height: 1.05; margin: 22px 0 6px; }
+[dir="rtl"] h2 { font-family: var(--naskh); font-size: 26px; font-weight: 500; margin: 20px 0 8px; }
+.sub { color: var(--muted); font-size: 15px; line-height: 1.65; margin: 0 auto; max-width: 320px; }
+[dir="rtl"] .sub { font-size: 17px; }
+.pick { position: relative; display: flex; align-items: center; justify-content: center; gap: 12px; width: 100%; min-height: 64px; margin-top: 26px; border-radius: 32px; cursor: pointer;
+  background: var(--accent); color: #fff; font-size: 17px; letter-spacing: .02em; border: 0; box-shadow: 0 10px 22px -12px rgba(180,115,92,.95);
+  transition: background .3s var(--ease), transform .2s var(--ease); }
+.pick:hover { background: var(--accent-deep); }
+.pick:active { transform: scale(.985); }
+.pick svg { width: 22px; height: 22px; }
+.pick input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.from { margin: 22px auto 0; max-width: 300px; text-align: start; position: relative; }
+.from label { display: block; font-size: 12px; letter-spacing: .08em; color: var(--muted); }
+[dir="rtl"] .from label { letter-spacing: 0; font-size: 15px; }
+.from input { width: 100%; border: 0; background: transparent; outline: none; border-radius: 0; padding: 8px 2px 10px; font-size: 17px; }
+.from .ul { position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--line); }
+.from .ul::after { content: ""; position: absolute; inset: 0; background: var(--accent); transform: scaleX(0); transition: transform .45s var(--ease-out); }
+.from:focus-within .ul::after { transform: scaleX(1); }
+.progress { margin-top: 28px; text-align: start; }
+.bar { height: 6px; border-radius: 3px; background: rgba(160,120,95,.14); overflow: hidden; }
+.bar i { display: block; height: 100%; width: 0; background: var(--accent); border-radius: 3px; transition: width .4s var(--ease); }
+.stat { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; color: var(--muted); margin: 10px 0 0; }
+[dir="rtl"] .stat { font-size: 16px; }
+.keep { font-size: 13.5px; color: var(--muted); margin: 12px 0 0; line-height: 1.6; }
+[dir="rtl"] .keep { font-size: 15.5px; }
+.fails { margin-top: 14px; font-size: 14px; color: #A0412D; }
+.fails button { margin-top: 8px; border: 1px solid rgba(201,138,114,.7); background: transparent; border-radius: 20px; padding: 8px 18px; cursor: pointer; color: var(--ink); }
+.tick { width: 56px; height: 56px; display: block; margin: 26px auto 10px; }
+.tick circle { stroke: var(--accent); stroke-width: 1.2; fill: none; stroke-dasharray: 164; stroke-dashoffset: 164; animation: draw .9s var(--ease) forwards; }
+.tick path { stroke: var(--accent-deep); stroke-width: 1.6; fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 30; stroke-dashoffset: 30; animation: draw .5s var(--ease) .7s forwards; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+.done-msg { text-align: center; }
+.done-msg p { margin: 0; }
+.done-msg .big { font-family: var(--script); font-size: 44px; line-height: 1.1; }
+[dir="rtl"] .done-msg .big { font-family: var(--naskh); font-size: 26px; font-weight: 500; }
+.notice { color: var(--muted); line-height: 1.7; margin-top: 22px; }
+.fade { animation: rise .6s var(--ease-out) both; }
+footer { margin-top: 36px; text-align: center; color: var(--faint); font-size: 12.5px; line-height: 1.8; }
+[dir="rtl"] footer { font-size: 14px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0ms !important; transition-duration: .01ms !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar"><div class="lang" role="group" aria-label="Language">
+    <button type="button" lang="en" data-l="en">EN</button><button type="button" lang="ar" data-l="ar">عربي</button>
+  </div></div>
+  <main id="main"></main>
+  <footer id="foot"></footer>
+</div>
+<script>
+(function () {
+  'use strict';
+  var WORKER = 'https://ola-mahmoud-photos.masabdelhamid.workers.dev';
+  var PART = 8 * 1024 * 1024, PARALLEL = 2, TRIES = 5;
+  var key = (new URLSearchParams(location.search).get('k') || '').trim();
+  var arNum = function (n) { return Number(n).toLocaleString('ar-EG'); };
+  function plural(n, one, two, few, many) { return n === 1 ? one : n === 2 ? two : n <= 10 ? arNum(n) + ' ' + few : arNum(n) + ' ' + many; }
+
+  var T = {
+    en: {
+      toggle: 'Language', share: 'Share your photos & videos',
+      sub: 'Thank you for celebrating with us. We’d love to see the day through your eyes.',
+      pick: 'Add photos & videos', pickMore: 'Add more',
+      from: 'Your name (optional)', fromPh: 'So we know who to thank',
+      sending: function (d, n) { return d + ' of ' + n + ' sent'; },
+      keep: 'Please keep this page open until everything has been sent.',
+      thanks: 'Thank you!', got: function (n) { return n === 1 ? 'Your photo has been received.' : n + ' photos and videos received.'; },
+      failed: function (n) { return n === 1 ? '1 file didn’t go through.' : n + ' files didn’t go through.'; }, retry: 'Try again',
+      nokey: 'Please use the link or QR code you were given to share your photos.',
+      closed: 'Photo sharing is closed for now. Thank you so much!',
+      private: 'Only Ola and Mahmoud can see what you share.'
+    },
+    ar: {
+      toggle: 'اللغة', share: 'شاركونا صوركم وفيديوهاتكم',
+      sub: 'شكرًا إنكم احتفلتوا معانا. نفسنا نشوف اليوم ده من عينيكم.',
+      pick: 'أضف صور وفيديوهات', pickMore: 'أضف كمان',
+      from: 'اسمك (اختياري)', fromPh: 'علشان نعرف نشكر مين',
+      sending: function (d, n) { return 'اتبعت ' + arNum(d) + ' من ' + arNum(n); },
+      keep: 'خلي الصفحة دي مفتوحة لحد ما كل حاجة تتبعت.',
+      thanks: 'شكرًا!', got: function (n) { return n === 1 ? 'وصلتنا صورتك.' : 'وصلنا ' + plural(n, 'ملف واحد', 'ملفين', 'ملفات', 'ملف') + '.'; },
+      failed: function (n) { return n === 1 ? 'ملف واحد ما اتبعتش.' : plural(n, '', '', 'ملفات', 'ملف') + ' ما اتبعتش.'; }, retry: 'جرب تاني',
+      nokey: 'استخدموا اللينك أو الـQR اللي وصلكم علشان تشاركوا صوركم.',
+      closed: 'مشاركة الصور مقفولة دلوقتي. شكرًا جدًا!',
+      private: 'اللي بتشاركوه بيوصل لعلا ومحمود بس.'
+    }
+  };
+  var lang = (function () { try { return localStorage.getItem('lang'); } catch (e) { return null; } })() ||
+             ((navigator.language || '').toLowerCase().indexOf('ar') === 0 ? 'ar' : 'en');
+  var state = { view: key ? 'ready' : 'nokey', total: 0, done: 0, bytes: 0, sent: 0, failed: [], received: 0, active: false };
+
+  function h(tag, attrs) {
+    var el = document.createElement(tag);
+    if (attrs) for (var k in attrs) { var v = attrs[k]; if (v == null || v === false) continue;
+      if (k === 'text') el.textContent = v; else if (k === 'html') el.innerHTML = v;
+      else if (k.slice(0, 2) === 'on') el.addEventListener(k.slice(2), v); else el.setAttribute(k, v); }
+    for (var i = 2; i < arguments.length; i++) { var c = arguments[i]; if (c == null || c === false) continue; el.appendChild(typeof c === 'string' ? document.createTextNode(c) : c); }
+    return el;
+  }
+  var main = document.getElementById('main');
+  var camera = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2l1.5-2h6l1.5 2h2A1.5 1.5 0 0 1 20 8.5v9A1.5 1.5 0 0 1 18.5 19h-13A1.5 1.5 0 0 1 4 17.5z"/><circle cx="12" cy="13" r="3.5"/></svg>';
+
+  function render() {
+    var t = T[lang], ar = lang === 'ar';
+    document.documentElement.lang = lang; document.documentElement.dir = ar ? 'rtl' : 'ltr';
+    Array.prototype.forEach.call(document.querySelectorAll('.lang button'), function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-l') === lang)); });
+    main.textContent = '';
+    var card = h('section', { class: 'card' },
+      ar ? h('h1', { class: 'names-ar', html: '<span style="transform:translateY(-0.26em)">علا</span> <span style="transform:translateY(-0.03em)"><span class="amp">و</span>محمود</span>' })
+         : h('h1', { class: 'names-en', html: 'Ola <span class="amp">&amp;</span> Mahmoud' }),
+      h('p', { class: 'caps', text: ar ? 'خطوبتنا، ٢٦ ديسمبر ٢٠٢٦' : 'Our engagement, 26 December 2026' }),
+      h('h2', { text: t.share }),
+      h('p', { class: 'sub', text: t.sub }));
+    if (state.view === 'nokey' || state.view === 'closed') {
+      card.appendChild(h('p', { class: 'notice', text: state.view === 'nokey' ? t.nokey : t.closed }));
+    } else {
+      if (state.view === 'done') {
+        card.appendChild(h('div', { class: 'done-msg fade' },
+          h('div', { html: '<svg class="tick" viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="26"/><path d="M18 29l7 7 13-15"/></svg>' }),
+          h('p', { class: 'big', text: t.thanks }), h('p', { class: 'sub', text: t.got(state.received) })));
+      }
+      var input = h('input', { type: 'file', accept: 'image/*,video/*', multiple: 'multiple', 'aria-label': t.pick });
+      input.addEventListener('change', function () { var fs = Array.prototype.slice.call(input.files || []); input.value = ''; if (fs.length) start(fs); });
+      var pick = h('label', { class: 'pick' + (state.active ? '' : '') }, h('span', { html: camera }), h('span', { text: state.view === 'done' ? t.pickMore : t.pick }), input);
+      if (!state.active) card.appendChild(pick);
+      if (state.view === 'ready') {
+        var fromIn = h('input', { type: 'text', id: 'from', maxlength: '60', autocomplete: 'name', placeholder: t.fromPh, dir: 'auto' });
+        try { fromIn.value = localStorage.getItem('from') || ''; } catch (e) {}
+        fromIn.addEventListener('input', function () { try { localStorage.setItem('from', fromIn.value); } catch (e) {} });
+        card.appendChild(h('div', { class: 'from' }, h('label', { for: 'from', text: t.from }), fromIn, h('span', { class: 'ul' })));
+      }
+      if (state.active) {
+        var pct = state.total ? Math.round(state.sent / Math.max(state.bytes, 1) * 100) : 0;
+        card.appendChild(h('div', { class: 'progress fade' },
+          h('div', { class: 'bar' }, h('i', { id: 'barfill', style: 'width:' + pct + '%' })),
+          h('p', { class: 'stat' }, h('span', { id: 'count', text: t.sending(state.done, state.total) }), h('span', { id: 'pct', text: (lang === 'ar' ? arNum(pct) : pct) + '%' })),
+          h('p', { class: 'keep', text: t.keep })));
+      }
+      if (!state.active && state.failed.length) {
+        card.appendChild(h('div', { class: 'fails' }, h('div', { text: t.failed(state.failed.length) }),
+          h('button', { type: 'button', onclick: function () { var f = state.failed; state.failed = []; start(f.map(function (x) { return x.file; })); } }, t.retry)));
+      }
+    }
+    main.appendChild(card);
+    document.getElementById('foot').textContent = t.private;
+  }
+  function updateProgress() {
+    var t = T[lang], pct = Math.round(state.sent / Math.max(state.bytes, 1) * 100);
+    var f = document.getElementById('barfill'); if (f) f.style.width = pct + '%';
+    var c = document.getElementById('count'); if (c) c.textContent = t.sending(state.done, state.total);
+    var p = document.getElementById('pct'); if (p) p.textContent = (lang === 'ar' ? arNum(pct) : pct) + '%';
+  }
+
+  /* ---------------------------------------------------------- uploading */
+  function api(path, opts) {
+    opts = opts || {}; opts.headers = Object.assign({ 'X-Key': key }, opts.headers || {});
+    return fetch(WORKER + path, opts).then(function (r) { return r.json().then(function (j) { if (!r.ok || !j.ok) { var e = new Error(j.error || 'http'); e.code = j.error; throw e; } return j; }); });
+  }
+  function retry(fn) {
+    var n = 0;
+    return (function attempt() {
+      return fn().catch(function (e) {
+        if (e.code === 'key' || e.code === 'closed' || e.code === 'type' || e.code === 'size' || ++n >= TRIES) throw e;
+        return new Promise(function (r) { setTimeout(r, 800 * Math.pow(2, n)); }).then(attempt);
+      });
+    })();
+  }
+  function guessType(f) {
+    if (f.type) return f.type;
+    var ext = (f.name.split('.').pop() || '').toLowerCase();
+    return { heic: 'image/heic', heif: 'image/heif', jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png', mov: 'video/quicktime', mp4: 'video/mp4', m4v: 'video/mp4' }[ext] || '';
+  }
+  function uploadFile(file, from) {
+    var parts = [], sentHere = 0;
+    return retry(function () { return api('/start', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ type: guessType(file), size: file.size, name: file.name, lastModified: file.lastModified, from: from }) }); })
+      .then(function (s) {
+        var n = Math.max(1, Math.ceil(file.size / PART)), i = 0;
+        function next() {
+          if (i >= n) return Promise.resolve();
+          var num = i + 1, blob = file.slice(i * PART, Math.min(file.size, (i + 1) * PART));
+          return retry(function () { return api('/part?key=' + encodeURIComponent(s.key) + '&uploadId=' + encodeURIComponent(s.uploadId) + '&n=' + num, { method: 'PUT', body: blob }); })
+            .then(function (p) { parts.push({ partNumber: p.partNumber, etag: p.etag }); sentHere += blob.size; state.sent += blob.size; updateProgress(); i++; return next(); });
+        }
+        return next().then(function () {
+          return retry(function () { return api('/complete', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ key: s.key, uploadId: s.uploadId, parts: parts }) }); });
+        }).catch(function (e) { state.sent -= sentHere; api('/abort', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ key: s.key, uploadId: s.uploadId }) }).catch(function () {}); throw e; });
+      });
+  }
+  var wake = null;
+  function keepAwake(on) {
+    try {
+      if (on && navigator.wakeLock && !wake) navigator.wakeLock.request('screen').then(function (w) { wake = w; }).catch(function () {});
+      if (!on && wake) { wake.release(); wake = null; }
+    } catch (e) {}
+  }
+  function start(files) {
+    var t = T[lang];
+    files = files.filter(function (f) { return /^(image|video)\//.test(guessType(f)); });
+    if (!files.length) return;
+    var from = ''; try { from = (localStorage.getItem('from') || '').trim(); } catch (e) {}
+    state.active = true; state.total = files.length; state.done = 0; state.bytes = files.reduce(function (a, f) { return a + f.size; }, 0); state.sent = 0;
+    state.view = state.view === 'done' ? 'done' : 'ready';
+    render(); keepAwake(true);
+    var queue = files.slice(), failed = [], ok = 0;
+    function worker() {
+      var f = queue.shift(); if (!f) return Promise.resolve();
+      return uploadFile(f, from).then(function () { ok++; }, function (e) { failed.push({ file: f, code: e.code }); if (e.code === 'closed') queue.length = 0; })
+        .then(function () { state.done++; updateProgress(); return worker(); });
+    }
+    var runners = []; for (var i = 0; i < PARALLEL; i++) runners.push(worker());
+    Promise.all(runners).then(function () {
+      keepAwake(false);
+      state.active = false; state.received += ok; state.failed = failed.filter(function (x) { return x.code !== 'type' && x.code !== 'size'; });
+      if (failed.some(function (x) { return x.code === 'closed'; })) state.view = 'closed';
+      else if (failed.some(function (x) { return x.code === 'key'; })) state.view = 'nokey';
+      else if (ok) state.view = 'done';
+      render();
+    });
+  }
+  window.addEventListener('beforeunload', function (e) { if (state.active) { e.preventDefault(); e.returnValue = ''; } });
+
+  Array.prototype.forEach.call(document.querySelectorAll('.lang button'), function (b) {
+    b.addEventListener('click', function () {
+      if (b.getAttribute('data-l') === lang) return;
+      lang = b.getAttribute('data-l'); try { localStorage.setItem('lang', lang); } catch (e) {}
+      main.classList.add('swapping'); setTimeout(function () { render(); main.classList.remove('swapping'); }, 280);
+    });
+  });
+  render();
+  if (key) fetch(WORKER + '/status').then(function (r) { return r.json(); }).then(function (s) { if (s && s.open === false && !state.active) { state.view = 'closed'; render(); } }).catch(function () {});
+})();
+</script>
+</body>
+</html>
