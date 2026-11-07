@@ -344,7 +344,7 @@ html { scrollbar-gutter: stable; }
       busy: 'Lots of replies at once! Please try again in a moment.',
       calendar: 'Add to calendar', google: 'Google', apple: 'Apple / Outlook',
       tap: 'Tap to open', open: 'Open your invitation', forWhom: 'For ',
-      sig: 'Ola &amp; Mahmoud'
+      sig: 'Ola <span class="amp">&amp;</span> Mahmoud'
     },
     ar: {
       toggle: 'English',
@@ -398,7 +398,7 @@ html { scrollbar-gutter: stable; }
       busy: 'في ردود كتير في نفس الوقت! جربوا تاني بعد شوية.',
       calendar: 'أضف للتقويم', google: 'جوجل', apple: 'آبل / أوتلوك',
       tap: 'اضغط لفتح الدعوة', open: 'افتح دعوتك', forWhom: 'إلى ',
-      sig: '<span>علا</span> <span>ومحمود</span>'
+      sig: '<span>علا</span> <span><span class="amp">و</span>محمود</span>'
     }
   };
 
@@ -488,7 +488,7 @@ html { scrollbar-gutter: stable; }
     var t = L(), ar = state.lang === 'ar', card = $('card');
     card.textContent = '';
     var names = ar
-      ? h('h1', { class: 'names-ar' }, h('span', { style: 'transform: translateY(-0.26em)', text: 'علا' }), ' ', h('span', { style: 'transform: translateY(-0.03em)', text: 'ومحمود' }))
+      ? h('h1', { class: 'names-ar' }, h('span', { style: 'transform: translateY(-0.26em)', text: 'علا' }), ' ', h('span', { style: 'transform: translateY(-0.03em)', html: '<span class="amp">و</span>محمود' }))
       : h('h1', { class: 'names-en', html: 'Ola <span class="amp">&amp;</span> Mahmoud' });
     var pin = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg>';
     [
@@ -809,7 +809,7 @@ html { scrollbar-gutter: stable; }
     env.to.lastChild.textContent = state.guest ? state.guest.household : '';
     var ln = env.letter.querySelector('.ln');
     ln.className = 'ln' + (ar ? ' ar' : '');
-    ln.innerHTML = ar ? '<span style="display: inline-block; transform: translateY(-0.26em)">علا</span> <span style="display: inline-block; transform: translateY(-0.03em)">ومحمود</span>'
+    ln.innerHTML = ar ? '<span style="display: inline-block; transform: translateY(-0.26em)">علا</span> <span style="display: inline-block; transform: translateY(-0.03em)"><span style="color: var(--accent)">و</span>محمود</span>'
                       : 'Ola <span style="color: var(--accent)">&amp;</span> Mahmoud';
   }
 
