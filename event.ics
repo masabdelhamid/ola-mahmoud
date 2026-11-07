@@ -1,0 +1,21 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Ola and Mahmoud//Engagement//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:ola-mahmoud-engagement-20261226@masabdelhamid.github.io
+DTSTAMP:20261107T000000Z
+DTSTART:20261226T140000Z
+DTEND:20261226T180000Z
+SUMMARY:Ola & Mahmoud's engagement
+LOCATION:Villa 16\, El Shahied Islam Rafat St.\, Fifth District\, First Settlement\, New Cairo
+DESCRIPTION:Map: https://maps.google.com/?q=30.066586\,31.452412
+URL:https://maps.google.com/?q=30.066586,31.452412
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Ola & Mahmoud's engagement is tomorrow at 4 pm
+END:VALARM
+END:VEVENT
+END:VCALENDAR

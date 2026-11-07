@@ -544,7 +544,7 @@ html { scrollbar-gutter: stable; }
     f.appendChild(h('div', { class: 'sig', html: t.sig }));
     f.appendChild(h('div', null, t.calendar + ': ',
       h('a', { href: googleCal(), target: '_blank', rel: 'noopener', text: t.google }), ' · ',
-      h('a', { href: icsHref(), download: 'ola-mahmoud-engagement.ics', text: t.apple })));
+      h('a', { href: 'event.ics', text: t.apple })));
   }
 
   function renderLangSwitch() {
