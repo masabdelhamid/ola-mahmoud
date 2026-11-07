@@ -122,7 +122,14 @@ const root=document.documentElement;
 // quiet signals to the Sheet: saw the glint, found the lamp (held 1 s), watched it through (reached the countdown)
 const API='https://script.google.com/macros/s/AKfycbzT5ClBgwMXVUX7mi5MEDA9InSI4oz0b0EuMKy_RJYh36i39F_Vgyab3UJDwAMDjgJu/exec';
 const codeNow=()=>window.__olmCode||new URLSearchParams(location.search).get('g')||'';
-function ping(ev){ const CODE=codeNow(); if(!CODE) return; try{ fetch(API+'?g='+encodeURIComponent(CODE)+'&ev='+ev,{mode:'no-cors',keepalive:true,cache:'no-store'}) }catch(err){} }
+const LINK=new URLSearchParams(location.search).get('l')||'';
+let early=[];   // what happened on a shared link before the visitor had a personal code
+function send(q){ try{ fetch(API+'?'+q,{mode:'no-cors',keepalive:true,cache:'no-store'}) }catch(err){} }
+function ping(ev){ const CODE=codeNow();
+  if(CODE) return send('g='+encodeURIComponent(CODE)+'&ev='+ev);
+  if(LINK){ early.push(ev); send('l='+encodeURIComponent(LINK)+'&ev='+ev) } }
+// once they reply, pass what they already did on this visit on to their own row
+window.addEventListener('olm-code',()=>{ const CODE=codeNow(); if(!CODE) return; early.forEach(ev=>send('g='+encodeURIComponent(CODE)+'&ev='+ev)); early=[] });
 let sawSent=false, fullSent=false, lampSent=false;
 function track(t){ if(!root.classList.contains('uv')) return; if(t>1&&!lampSent){ lampSent=true; ping('lamp') } if(t>5.4&&!fullSent){ fullSent=true; ping('full') } }
 function keyEl(){ return document.querySelector('#foot .uvkey') }

@@ -769,6 +769,7 @@ html { scrollbar-gutter: stable; }
           if (res.ok) {
             if (asLink && res.code) {
               code = res.code; window.__olmCode = code; state.justLinked = res.personalLink || '';
+              try { window.dispatchEvent(new Event('olm-code')); } catch (e) {}
               try { localStorage.setItem(LINK_KEY, code); } catch (e) {}
             }
             state.guest = res; state.draft = null; state.view = 'thanks'; morphTo(rsvpPane()); return;
