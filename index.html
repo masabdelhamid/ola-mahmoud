@@ -314,7 +314,7 @@ html { scrollbar-gutter: stable; }
       units: ['days', 'hours', 'minutes'],
       num: function (n) { return String(n); },
       rsvpTitle: 'Will you join us?',
-      rsvpSub: function (s) { return 'We’ve saved ' + (s === 1 ? 'a seat' : s + ' seats') + ' for you. Kindly reply by 12 December.'; },
+      rsvpSub: function (s) { return 'We’ve saved ' + (s === 1 ? 'a seat' : s + ' seats') + ' for you. Kindly reply as soon as you can.'; },
       yes: { f: function () { return 'Yes, we’ll be there'; }, he: function () { return 'Yes, I’ll be there'; }, she: function () { return 'Yes, I’ll be there'; } },
       no: { f: function () { return 'Sorry, we can’t make it'; }, he: function () { return 'Sorry, I can’t make it'; }, she: function () { return 'Sorry, I can’t make it'; } },
       whoComing: 'Who’s coming?',
@@ -360,9 +360,9 @@ html { scrollbar-gutter: stable; }
       num: arNum,
       rsvpTitle: { f: 'هتشرفونا؟', he: 'هتشرفنا؟', she: 'هتشرفينا؟' },
       rsvpSub: {
-        f: function (s) { return 'حاجزين لكم ' + arSeats(s) + '. ياريت تردوا علينا قبل ١٢ ديسمبر.'; },
-        he: function (s) { return 'حاجزين لك ' + arSeats(s) + '. ياريت ترد علينا قبل ١٢ ديسمبر.'; },
-        she: function (s) { return 'حاجزين لكي ' + arSeats(s) + '. ياريت تردي علينا قبل ١٢ ديسمبر.'; }
+        f: function (s) { return 'حاجزين لكم ' + arSeats(s) + '. ياريت تردوا علينا في أقرب وقت.'; },
+        he: function (s) { return 'حاجزين لك ' + arSeats(s) + '. ياريت ترد علينا في أقرب وقت.'; },
+        she: function (s) { return 'حاجزين لكي ' + arSeats(s) + '. ياريت تردي علينا في أقرب وقت.'; }
       },
       yes: { f: function () { return 'أكيد، جايين'; }, he: function () { return 'أكيد، جاي'; }, she: function () { return 'أكيد، جاية'; } },
       no: { f: function () { return 'للأسف مش هنقدر نيجي'; }, he: function () { return 'للأسف مش هقدر آجي'; }, she: function () { return 'للأسف مش هقدر آجي'; } },
