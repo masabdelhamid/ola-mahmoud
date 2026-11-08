@@ -863,9 +863,20 @@ html { scrollbar-gutter: stable; }
     setTimeout(function () { if (env) { env.hint.style.opacity = ''; env.hint.classList.add('on'); } }, 700);
   }
 
+  // An "open" is counted only when a person opens the invitation: tapping the envelope (or, if it was already
+  // opened in this tab, or motion is reduced, once the page is on screen). Link previews and robots never tap.
+  var openSent = false;
+  function countOpen() {
+    var c = window.__olmCode || code;
+    if (openSent || (!c && !linkCode)) return;
+    openSent = true;
+    try { fetch(API + '?' + (c ? 'g=' + encodeURIComponent(c) : 'l=' + encodeURIComponent(linkCode)) + '&ev=open', { mode: 'no-cors', keepalive: true, cache: 'no-store' }); } catch (e) {}
+  }
+
   function openEnvelope() {
     if (!env || env.opening || !env.shown) return;
     env.opening = true;
+    countOpen();
     try { sessionStorage.setItem('opened', '1'); } catch (e) {}
     var e = env, main = $('main'), top = document.querySelector('.topbar');
     e.hint.classList.remove('on');
@@ -960,6 +971,10 @@ html { scrollbar-gutter: stable; }
 
   renderAll();
   var useEnvelope = !envelopeSeen() && !REDUCED && !!Element.prototype.animate;
+  if (!useEnvelope && (envelopeSeen() || REDUCED)) {
+    var whenSeen = function () { if (document.visibilityState === 'visible') { setTimeout(countOpen, 800); document.removeEventListener('visibilitychange', whenSeen); } };
+    document.addEventListener('visibilitychange', whenSeen); whenSeen();
+  }
   if (useEnvelope) buildEnvelope();
   else { $('main').classList.add('enter'); setTimeout(function () { $('main').classList.remove('enter'); }, 3000); }
   var loaded = code || linkCode ? load() : Promise.resolve();
